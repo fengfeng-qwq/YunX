@@ -81,6 +81,10 @@ android {
     buildTypes {
         debug {
             signingConfig = signingConfigs.getByName("debug")
+            // 临时（只在本 fork 的出包分支上）：换包名与已安装的官方 release 包并存，
+            // 免得真机验收要先卸载、连带清掉网盘 Cookie 和 GitHub Token。
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
         }
         // Release 变体：R8 代码混淆 + 资源压缩瘦身（未使用的代码/资源裁剪）。
         // 签名：有发布证书就用正式签名（CI nightly / 本地自行导出变量），否则不签名 ⇒
